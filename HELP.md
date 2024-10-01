@@ -15,3 +15,14 @@
 - Jika tidak ingin menggunakan Laravel Breeze, bisa buat manual
 - Untuk menambahkan Laravel Breeze, dengan perintah `composer require laravel/breeze=v1.26.2 --dev`
 - Lalu perlu install halaman authorization dengan perintah `php artisan breeze:install`
+
+## Authentication
+- Merupakan proses melakukan verifikasi apakah request dari user dikenali atau tidak
+- Proses Authentication menggunakan Facade Auth, tidak langsung menggunakan Model User
+- `Auth::attempt(credential, remember)` melakukan login dengan credential, dan disimpan untuk beberapa waktu, jika berhasil akan otomatis memanggil `Auth::login()`
+- `Auth::login(credential)` melakukan login untuk credential, otomatis data user akan disimpan di Session, bisa melakukan generate Session agar disimpan di Cookie
+- `Auth::logout()` mengeluarkan user yang sedang login
+- `Auth::user()` mendapatkan informasi user yang sedang login
+
+## Learning
+- test/UserTest.php
