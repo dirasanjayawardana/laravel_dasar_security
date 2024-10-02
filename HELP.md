@@ -23,6 +23,8 @@
 - `Auth::login(credential)` melakukan login untuk credential, otomatis data user akan disimpan di Session, bisa melakukan generate Session agar disimpan di Cookie
 - `Auth::logout()` mengeluarkan user yang sedang login
 - `Auth::user()` mendapatkan informasi user yang sedang login
+- `Session::invalidate()` untuk menghapus session dan logout
 
 ## Learning
 - test/UserTest.php
+- UserController.php
