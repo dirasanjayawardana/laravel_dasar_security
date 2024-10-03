@@ -25,6 +25,18 @@
 - `Auth::user()` mendapatkan informasi user yang sedang login
 - `Session::invalidate()` untuk menghapus session dan logout
 
+## Hash Facade
+- Digunakan untuk membuat Hash (kode unik yg tidak bisa dikembalikan ke bentuk asalnya)
+- Di laravel secara default menggunakan algoritma BCrypt, bisa digantu menjadi argon atau argon2id
+- Pengaturan Hash bisa dilakukan di file `config/hashing.php`
+- Saat menggunakan `Auth::attempt()` otomatis pengecekan hasnya dilakukan oleh laravel
+- `Hash::make($contoh)` membuat hashing
+- `Hash::check($contoh, $hashnya)` melakukan check hasil hashing dengan nilai aslinya
+
+## Auth Middleware
+- Bisa digunakan untuk memastikan bahwa user sudah ter-authentikasi terlabih dahulu sebelum mengakses halaman yang diinginkan
+- Jika belum authenticate, akan mengembalikan error AuthenticationException, secara default akan di redirect ke route `login`
+
 ## Learning
 - test/UserTest.php
 - UserController.php
