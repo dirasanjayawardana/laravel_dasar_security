@@ -37,6 +37,14 @@
 - Bisa digunakan untuk memastikan bahwa user sudah ter-authentikasi terlabih dahulu sebelum mengakses halaman yang diinginkan
 - Jika belum authenticate, akan mengembalikan error AuthenticationException, secara default akan di redirect ke route `login`
 
+## Gurad
+- Guard adalah bagaimana cara User di autentikasi untuk tiap request nya
+- Guard hanya memastikan request valid atau tidak, bukan untuk mengambil data user
+- untuk membuat Guard, dengan implement turunan dari interface Guard, kemudian registrasikan di method `boot()` di `AuthServiceProvider` dan tambahkan ke `config/auth.php`
+- untuk mengambil data Usernya, menggunakan UserProvider
+- untuk menggunakan Guard di middleware, dengan `middleware(["auth:namaguardnya"])` pada route yg ingin di protect
+- Secara default di file `config.php`, proses authentikasi dilakukan dengan mengecek `session`
+
 ## Learning
 - test/UserTest.php
 - UserController.php
