@@ -49,3 +49,15 @@
 - Defaultnya menggunakan ElloquentUserProvider
 - Jika ingin membuat provider sendiri, dengan membuat class implement dari UserProvider
 - UserProvider biasanya digunakan oleh Guard untuk mengambil informasi usernya
+
+## Authorization
+- Merupakan proses pengecekan hak akses terhadap sebuah aksi
+- Pada Laravel, ada dua cara untuk melakukan Authorization, `Gates` dan `Policies`
+- `Gates` itu seperti Routes, berbasis closure, definisi Gates biasanya disimpan di `boot()` dalam AuthServiceProvider, untuk menggunakannya dengan Facade Gate
+- `Gates::allows(role, resource)` mengecek apakah user diperbolehkan
+- `Gates::denies(role, resource)` mengecek apakah user tidak diperbolehkan
+- `Gates::any(roles, resource)` mengecek apakah user diperbolehkan disalah satu role
+- `Gates::none(roles, resource)` mengecek apakah user tidak diperbolehkan disemua role
+- `Gates::authorize(role, resource)` jika user tidak diperbolehkan, akan terjadi error AuthorizationException (403)
+- `Policies` itu seperti Controller, kumpulan logic dalam model atau resource
+- Contoh kasus di project ini, menentukan user mana yg bisa mengubah contact
