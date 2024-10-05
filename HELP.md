@@ -45,6 +45,7 @@
 - untuk menggunakan Guard di middleware, dengan `middleware(["auth:namaguardnya"])` pada route yg ingin di protect
 - Secara default di file `config.php`, proses authentikasi dilakukan dengan mengecek `session`
 
-## Learning
-- test/UserTest.php
-- UserController.php
+## UserProvider
+- Defaultnya menggunakan ElloquentUserProvider
+- Jika ingin membuat provider sendiri, dengan membuat class implement dari UserProvider
+- UserProvider biasanya digunakan oleh Guard untuk mengambil informasi usernya

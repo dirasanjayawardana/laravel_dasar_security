@@ -83,14 +83,12 @@ class UserTest extends TestCase
 
         $this->get("/simple-api/users/current", [
             "Accept" => "application/json"
-        ])
-            ->assertStatus(401);
+        ])->assertStatus(401);
 
         $this->get("/simple-api/users/current", [
             "Accept" => "application/json",
             "API-Key" => "secret"
-        ])
-            ->assertSeeText("Hello Wardana");
+        ])->assertSeeText("Hello Sanjaya");
 
     }
 }
