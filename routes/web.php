@@ -17,14 +17,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__ . '/auth.php';
-
-
 Route::get("/users/login", [\App\Http\Controllers\UserController::class, "login"]);
 Route::get("/users/current", [\App\Http\Controllers\UserController::class, "current"])
-    ->middleware(["auth"]);
+->middleware(["auth"]);
 Route::get("/api/users/current", [\App\Http\Controllers\UserController::class, "current"])
-    ->middleware(["auth:token"]);
+->middleware(["auth:token"]);
 Route::get("/simple-api/users/current", [\App\Http\Controllers\UserController::class, "current"])
-    ->middleware(["auth:simple-token"]);
+->middleware(["auth:simple-token"]);
 
+Route::post("/api/todo", [\App\Http\Controllers\TodoController::class, "create"]);
+
+
+require __DIR__ . '/auth.php';

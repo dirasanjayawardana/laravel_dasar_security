@@ -71,3 +71,19 @@
 - Untuk membuat Policy untuk sebuah model, dengan `php artisan make:policy NamaPolicy --model=NamaModel`
 - Setelah membuat Policy, harus diregistrasikan di `AuthServiceProvider` pada bagian attribute `policies`
 - Cara menggunakannya sama seperti Gate, menggunakan facade `Gate::methodNya()`
+
+## Authorizable
+- Pada User Model, secara default menggunakan trait `Autorizable`
+- Trait ini digunakan untuk melakukan pengecekan authorization menggunakan method-method yang telah disediakan, sehingga tidak perlu menggunakan Facade `Gate`
+- `can()` shortcut memanggil `Gate::allows()`
+- `canAny()`
+- `cant()`
+- `cannot()`
+
+## Authorize Request
+- Selain menggunakan Gate dan Authorizable, trait `AuthorizesRequests` juga bisa digunakan untuk melakukan pengecekan authorization
+- Secara default, saat membuat Controller, akan menggunakan trait AuthorizesRequests
+- Dengan method `authorize()` shortcut untuk memanggil `Gate::authorize()`
+
+## Blade Template Authorization
+- Untuk melakukan pengecekan authorization di blade template, bisa menggunakan `@can`, `@cannot`, `@canany`
