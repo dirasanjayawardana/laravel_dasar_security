@@ -53,11 +53,21 @@
 ## Authorization
 - Merupakan proses pengecekan hak akses terhadap sebuah aksi
 - Pada Laravel, ada dua cara untuk melakukan Authorization, `Gates` dan `Policies`
-- `Gates` itu seperti Routes, berbasis closure, definisi Gates biasanya disimpan di `boot()` dalam AuthServiceProvider, untuk menggunakannya dengan Facade Gate
-- `Gates::allows(role, resource)` mengecek apakah user diperbolehkan
-- `Gates::denies(role, resource)` mengecek apakah user tidak diperbolehkan
-- `Gates::any(roles, resource)` mengecek apakah user diperbolehkan disalah satu role
-- `Gates::none(roles, resource)` mengecek apakah user tidak diperbolehkan disemua role
-- `Gates::authorize(role, resource)` jika user tidak diperbolehkan, akan terjadi error AuthorizationException (403)
-- `Policies` itu seperti Controller, kumpulan logic dalam model atau resource
 - Contoh kasus di project ini, menentukan user mana yg bisa mengubah contact
+
+### Gate
+- `Gate` itu seperti Routes, berbasis closure, definisi Gates biasanya disimpan di `boot()` dalam AuthServiceProvider, untuk menggunakannya dengan Facade Gate
+- `Gate::allows("nama_gate", resource)` mengecek apakah user diperbolehkan
+- `Gate::denies("nama_gate", resource)` mengecek apakah user tidak diperbolehkan
+- `Gate::any(["nama_gate"], resource)` mengecek apakah user diperbolehkan di salah satu role
+- `Gate::none(["nama_gate"], resource)` mengecek apakah user tidak diperbolehkan disemua role
+- `Gate::authorize("nama_gate", resource)` jika user tidak diperbolehkan, akan terjadi error AuthorizationException (403)
+- Secara default Facade Gate akan mendeteksi user yang sedang login, jika ingin melakukan pengecekan terhadap user lain bisa menggunakan `Gate::forUser(user)` yang akan mengembalikan object `gate` baru
+- `Gate::inspect("nama_gate")` Untuk mendapatkan dan mengembalikan object response ketika terjadi error
+
+### Policies
+- `Policies` itu seperti Controller, kumpulan authorization logic terhadap model atau resource
+- Untuk membuat Policy, dengan `php artisan make:policy NamaPolicy`
+- Untuk membuat Policy untuk sebuah model, dengan `php artisan make:policy NamaPolicy --model=NamaModel`
+- Setelah membuat Policy, harus diregistrasikan di `AuthServiceProvider` pada bagian attribute `policies`
+- Cara menggunakannya sama seperti Gate, menggunakan facade `Gate::methodNya()`
