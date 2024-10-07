@@ -87,3 +87,19 @@
 
 ## Blade Template Authorization
 - Untuk melakukan pengecekan authorization di blade template, bisa menggunakan `@can`, `@cannot`, `@canany`
+
+## Guest Access
+- Secara default, jika Gate atau Policy tidak mendeteksi adanya User, secara otomatis akan mengembalikan false
+- Untuk membuat akses Guest (bukan User) bisa dengan menjadikan paramter User pada Gate atau Policy menjadi optional parameter, dengan menambahkan tanda tanya `?` pada parameter methodnya
+- Contoh untuk register tidak memerlukan login User
+
+## Before and After
+- Gate dan Policy memiliki fitur Before dan After yang akan dieksekusi sebelum dan setelah sebuah Gate atau Policy dieksekusi, berupa method `before()` dan `after()` didalam Policy
+- Jika Before mengembalikan boolean, maka eksekusi akan dihentikan, dan langsung dikembalikan sebagai hasil proses authorization
+- After akan dieksekusi paling akhir, dan bisa digunakan untuk mengubah hasil dari authorization Gate atau Policy, jika After mengembalikan result, maka hasil dar Gate atau Policy dibuah menjadi hasil dari After
+
+## Encryption
+- Secara default laravel menyimpan password menggunakan Hash (tidak bisa dikembalikan ke nilai awal)
+- Selain itu, bisa juga menggunakan `Crypt Facade` untuk melakukan enkripsi dan dekripsi
+- Konfigurasi untuk Encryption disimpan di `config/app.php` pada `'key' => env('APP_KEY')` untuk menyimpan key yg digunakan untuk dekripsi
+- Untuk Key bisa digenerate degan `php artisan key:generate`

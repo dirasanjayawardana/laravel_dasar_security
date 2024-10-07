@@ -26,7 +26,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         Todo::class => TodoPolicy::class,
-        // User::class => UserPolicy::class
+        User::class => UserPolicy::class
     ];
 
     /**
